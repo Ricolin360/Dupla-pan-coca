@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un mensaje especial</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: "Segoe UI", sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background: linear-gradient(-45deg,#667eea,#764ba2,#6dd5ed,#2193b0);
+background-size:400% 400%;
+animation: gradientMove 12s ease infinite;
+color:white;
+}
+
+/* animated gradient background */
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* floating particles */
+.particle{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:0.6;
+animation: floatUp linear infinite;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(100vh) scale(0.5);
+opacity:0;
+}
+30%{opacity:0.7;}
+to{
+transform:translateY(-10vh) scale(1.2);
+opacity:0;
+}
+}
+
+/* main card */
+.card{
+backdrop-filter: blur(14px);
+background: rgba(255,255,255,0.12);
+border:1px solid rgba(255,255,255,0.2);
+padding:50px;
+border-radius:28px;
+max-width:700px;
+text-align:center;
+box-shadow:0 30px 80px rgba(0,0,0,0.35);
+animation: cardEnter 1.4s ease;
+}
+
+@keyframes cardEnter{
+from{
+opacity:0;
+transform:translateY(40px) scale(0.95);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+h1{
+font-size:36px;
+margin-bottom:20px;
+letter-spacing:1px;
+}
+
+p{
+font-size:18px;
+line-height:1.7;
+margin-bottom:18px;
+}
+
+.highlight{
+font-weight:600;
+}
+
+button{
+margin-top:20px;
+padding:14px 28px;
+font-size:16px;
+border-radius:14px;
+border:none;
+cursor:pointer;
+background:white;
+color:#333;
+font-weight:600;
+transition: transform .25s, box-shadow .25s;
+}
+
+button:hover{
+transform:translateY(-3px) scale(1.03);
+box-shadow:0 15px 30px rgba(0,0,0,0.25);
+}
+
+.hidden{
+display:none;
+margin-top:25px;
+animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(10px)}
+to{opacity:1; transform:translateY(0)}
+}
+
+.final{
+font-size:22px;
+font-weight:600;
+margin-top:10px;
+}
+
+.footer{
+margin-top:30px;
+font-size:15px;
+opacity:0.8;
+}
+
+/* typing animation */
+.typing{
+border-right:3px solid white;
+white-space:nowrap;
+overflow:hidden;
+width:0;
+animation: typing 4s steps(40,end) forwards, blink .8s infinite;
+}
+
+@keyframes typing{
+to{width:100%}
+}
+
+@keyframes blink{
+50%{border-color:transparent}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1 class="typing">Para Ana, alguien muy especial ✨</h1>
+
+<p>
+Hay personas que llegan a tu vida de una forma muy normal…
+y sin darte cuenta terminan volviéndose <span class="highlight">parte importante de tus días</span>.
+</p>
+
+<p>
+Las conversaciones largas, las risas por cosas simples,
+los momentos jugando o simplemente pasando el tiempo.
+Todo eso se vuelve especial cuando es con la persona correcta.
+</p>
+
+<p>
+Y honestamente,
+<span class="highlight">me alegra mucho que seas parte de mi vida.</span>
+</p>
+
+<button onclick="mostrar()">Abrir el mensaje final 💌</button>
+
+<div id="final" class="hidden">
+
+<p>
+A veces uno no dice estas cosas tan seguido,
+pero hoy quería hacerlo de una forma diferente.
+</p>
+
+<p class="final">
+Te quiero mucho y valoro muchísimo tu amistad.
+</p>
+
+<p>
+Gracias por las risas, las pláticas,
+los momentos buenos y por simplemente estar.
+</p>
+
+<div class="footer">
+— Con cariño Is, alguien que aprecia mucho tenerte en su vida ❤️
+  
+   <p>somos como el verdadero pan con coca 🥐🥤
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function mostrar(){
+document.getElementById("final").style.display="block";
+}
+
+/* create particles */
+function crearParticula(){
+const p=document.createElement("div");
+p.className="particle";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(6+Math.random()*6)+"s";
+document.body.appendChild(p);
+setTimeout(()=>{p.remove();},12000);
+}
+
+setInterval(crearParticula,250);
+
+</script>
+
+</body>
+</html>
